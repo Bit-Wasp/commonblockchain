@@ -1,0 +1,21 @@
+{
+  "name": "bitwasp/commonblockchain",
+  "require": {
+    "afk11/minirest": "v1.0.2"
+  },
+  "license": "MIT",
+  "require-dev": {
+    "phpunit/phpunit": "^4.5|^5.0",
+    "squizlabs/php_codesniffer": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "BitWasp\\CommonBlockchain\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BitWasp\\CommonBlockchain\\Test\\": "test/"
+    }
+  }
+}
