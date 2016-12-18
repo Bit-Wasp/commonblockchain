@@ -1,7 +1,7 @@
 {
   "name": "bitwasp/commonblockchain",
   "require": {
-    "afk11/minirest": "v1.0.2"
+    "afk11/minirest": "v1.0.4"
   },
   "license": "MIT",
   "require-dev": {
