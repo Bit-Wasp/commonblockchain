@@ -3,7 +3,7 @@
 namespace BitWasp\CommonBlockchain;
 
 use Afk11\MiniRest\RestClient;
-use BlocktrailUnofficial\RestClientInterface;
+use Afk11\MiniRest\RestClientInterface;
 
 class CommonBlockchain
 {
@@ -31,20 +31,22 @@ class CommonBlockchain
     public $blocks;
 
     /**
-     * Repo constructor.
-     * @param string $version
-     * @param string $base
+     * CommonBlockchain constructor.
+     * @param $apiKey
+     * @param $apiSecret
+     * @param $base
      */
-    public function __construct($version, $base)
+    public function __construct($apiKey, $apiSecret, $base)
     {
-        if (substr($base, -1) !== '/') {
-            $base .= '/';
+        if (substr($base, -1) == '/') {
+            $base = substr($base, 0, -1);
         }
 
-        $this->url = $base . $version;
-        $this->client = (new RestClient('', '', $version, $base))
+        $this->url = $base;
+        $this->client = (new RestClient($apiKey, $apiSecret, $this->url))
             ->setClientVersion(self::VERSION)
             ->setClientVersion(self::AGENT)
+            ->setApiKeyQueryString(true)
         ;
 
         $this->addresses = new Addresses($this->client);

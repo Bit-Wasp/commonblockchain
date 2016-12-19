@@ -2,6 +2,7 @@
 
 namespace BitWasp\CommonBlockchain;
 
+use Afk11\MiniRest\BadResponseException;
 use Afk11\MiniRest\RestClientInterface;
 
 abstract class AbstractRepo
@@ -61,12 +62,18 @@ abstract class AbstractRepo
     }
 
     /**
-     * @param string $endpoint
+     * @param $endpoint
      * @param array $body
      * @return array
+     * @throws BadResponseException
      */
     protected function makeRequest($endpoint, $body = [])
     {
-        return $this->client->post($this->repo . "/" . $endpoint, null, $body);
+        try {
+            $response = $this->client->post($this->repo . "/" . $endpoint, null, $body);
+            return $response;
+        } catch (BadResponseException $e) {
+            throw $e;
+        }
     }
 }
